@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version
+2.7.2
 
-* System dependencies
+* How to run
+    - Clone project
+    - bundle install
+    - rails db:migrate
+    - rails s
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Areas for improvement
+    - better status codes
+    - make use of the pagination features from the twitter api to ensure a constant stream of tweets
+    - Error handling
+    - TESTS!!!
+    - documentation
