@@ -12,6 +12,7 @@ gem 'puma', '~> 5.0'
 gem 'figaro'
 gem 'httparty'
 gem 'whenever'
+gem 'pg'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -35,7 +36,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
