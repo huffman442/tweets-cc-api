@@ -1,14 +1,19 @@
 require './app/services/tweet_crawler'
 class TweetsController < ApplicationController
   def show
-    @tweet = Tweet.includes(:topics)
+    @tweets = Tweet.includes(:topics)
                   .where(topics: { name: params[:topic]} )
                   .references(:topics)
                   .order(updated_at: :desc)
                   .limit(params[:limit] ||= 10) # Allow api call to limit tweets accessed
-    render json: @tweet
-  end
+    
+    @tweets.each do |tweet|
+      tweet.tweet_id = tweet.tweet_id.to_s
+    end
 
+    render json: @tweets
+  end
+  
   def update
     TweetCrawler.new('nasa')
     TweetCrawler.new('healthcare')
