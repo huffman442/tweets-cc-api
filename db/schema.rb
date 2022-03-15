@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_09_235737) do
+ActiveRecord::Schema.define(version: 2022_03_15_221635) do
 
   create_table "topics", force: :cascade do |t|
     t.string "name"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2022_03_09_235737) do
   end
 
   create_table "tweets", force: :cascade do |t|
-    t.bigint "tweet_id"
+    t.string "tweet_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
