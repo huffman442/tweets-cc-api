@@ -7,10 +7,6 @@ class TweetsController < ApplicationController
                   .order(updated_at: :desc)
                   .limit(params[:limit] ||= 10) # Allow api call to limit tweets accessed
     
-    @tweets.each do |tweet|
-      tweet.tweet_id = tweet.tweet_id.to_s
-    end
-
     render json: @tweets
   end
   
