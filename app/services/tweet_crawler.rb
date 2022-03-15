@@ -5,7 +5,7 @@ class TweetCrawler
     def initialize(topic)
         @topic = topic
         set_call_params()
-        @response = get_api(@query, @headers, @uri)
+        @response = get_api
         response_status()
         
         # Due to time constraints, this needs further error handling & testing for different api results(unauthorized/not found/etc.)
@@ -15,7 +15,8 @@ class TweetCrawler
 
     def set_call_params
         @query = {
-            "query" => @topic
+            "query" => @topic,
+            "max_limit" => 100
         }
         @headers = { 
             "Authorization"  => ENV['TWITTER_BEARER_TOKEN']
@@ -23,11 +24,11 @@ class TweetCrawler
         @uri ="https://api.twitter.com/2/tweets/search/recent"
     end
 
-    def get_api query, headers, uri
+    def get_api
         HTTParty.get(
-            uri, 
-            :headers => headers,
-            :query => query
+            @uri, 
+            :headers => @headers,
+            :query => @query
         )
     end
 
