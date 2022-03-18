@@ -10,10 +10,10 @@ class TweetCrawler
         response_status()
         
         # Due to time constraints, this needs further error handling & testing for different api results(unauthorized/not found/etc.)
-        if @response.code == '200'
+        #if @response.code == '200'
             @data = @response["data"]
             save_tweets()
-        end
+        #end
     end
 
     def set_call_params
