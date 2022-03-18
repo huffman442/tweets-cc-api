@@ -10,10 +10,9 @@ class TweetCrawler
         response_status()
         
         # Due to time constraints, this needs further error handling & testing for different api results(unauthorized/not found/etc.)
-        #if @response.code == '200'
-            @data = @response["data"]
-            save_tweets()
-        #end
+    
+        @data = @response["data"]
+        save_tweets()
     end
 
     def set_call_params
@@ -41,7 +40,6 @@ class TweetCrawler
     end
 
     def save_tweets
-        puts @data
         @data.each do |tweet|
             # If tweet exists grab it, update to have this topic else save the new tweet
             if Tweet.exists?(tweet_id=tweet["id"])
