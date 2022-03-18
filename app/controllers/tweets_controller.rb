@@ -9,12 +9,4 @@ class TweetsController < ApplicationController
     
     render json: @tweets
   end
-  
-  def update
-    TweetCrawler.new('nasa')
-    TweetCrawler.new('healthcare')
-    TweetCrawler.new('ruby')
-    render :json => { :success => true }
-    # Would like to return more information here maybe regarding num of tweets added or something
-  end
 end
