@@ -5,18 +5,21 @@ class TweetCrawler
     def initialize(topic)
         @topic = topic
         set_call_params()
-        @response = get_api
+
+        @response = get_api()
         response_status()
         
         # Due to time constraints, this needs further error handling & testing for different api results(unauthorized/not found/etc.)
-        @data = @response["data"]
-        save_tweets()
+        if @response.code == '200'
+            @data = @response["data"]
+            save_tweets()
+        end
     end
 
     def set_call_params
         @query = {
             "query" => @topic,
-            "max_limit" => 100
+            "max_results" => 100
         }
         @headers = { 
             "Authorization"  => ENV['TWITTER_BEARER_TOKEN']
@@ -24,7 +27,7 @@ class TweetCrawler
         @uri ="https://api.twitter.com/2/tweets/search/recent"
     end
 
-    def get_api
+    def get_api()
         HTTParty.get(
             @uri, 
             :headers => @headers,
@@ -38,6 +41,7 @@ class TweetCrawler
     end
 
     def save_tweets
+        puts @data
         @data.each do |tweet|
             # If tweet exists grab it, update to have this topic else save the new tweet
             if Tweet.exists?(tweet_id=tweet["id"])
